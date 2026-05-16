@@ -22,6 +22,30 @@ body{
 	background:#f4f7fc;
 	font-family:Arial, sans-serif;
 }
+.dark-mode .bg-white {
+	background-color: #1e1e1e !important;
+}
+
+body.dark-mode {
+	background: black !important;
+	color: white !important;
+}
+/*
+.dark-mode {
+	background-color: #121212 !important;
+	color: white !important;
+	min-height: 100vh;
+}*/
+.dark-mode .container, .dark-mode .card, .dark-mode .chat-container {
+	background-color: #1e1e1e !important;
+	color: white !important;
+}
+
+.dark-mode input, .dark-mode textarea {
+	background-color: #2b2b2b !important;
+	color: white !important;
+	border: 1px solid #555 !important;
+}
 
 .edit-card{
 	border:none;
@@ -166,6 +190,21 @@ textarea{
 	</div>
 
 </div>
+<script>
+		function toggleDarkMode() {
 
+			document.body.classList.toggle("dark-mode");
+
+			if (document.body.classList.contains("dark-mode")) {
+				localStorage.setItem("theme", "dark");
+			} else {
+				localStorage.setItem("theme", "light");
+			}
+		}
+
+		if (localStorage.getItem("theme") === "dark") {
+			document.body.classList.add("dark-mode");
+		}
+	</script>
 </body>
 </html>

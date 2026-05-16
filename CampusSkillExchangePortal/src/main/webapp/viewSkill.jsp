@@ -29,6 +29,30 @@ if (list == null) {
 body {
 	background: #f4f7fc;
 }
+.dark-mode .bg-white {
+	background-color: #1e1e1e !important;
+}
+
+body.dark-mode {
+	background: black !important;
+	color: white !important;
+}
+/*
+.dark-mode {
+	background-color: #121212 !important;
+	color: white !important;
+	min-height: 100vh;
+}*/
+.dark-mode .container, .dark-mode .card, .dark-mode .chat-container {
+	background-color: #1e1e1e !important;
+	color: white !important;
+}
+
+.dark-mode input, .dark-mode textarea {
+	background-color: #2b2b2b !important;
+	color: white !important;
+	border: 1px solid #555 !important;
+}
 
 .page-title {
 	font-weight: 700;
@@ -112,6 +136,21 @@ body {
 	session.removeAttribute("failedMsg");
 	}
 	%>
+	
+	<%
+	String duplicate = (String) session.getAttribute("checkReq");
+	if (duplicate != null) {
+	%>
+	<div class="alert alert-warning text-center">
+		<%=duplicate%>
+	</div>
+	<%
+	session.removeAttribute("checkReq");
+	}
+	%>
+	
+	
+	
 	<%
 	User us = (User) session.getAttribute("user");
 	%>
@@ -139,13 +178,13 @@ body {
 			</div>
 
 		</div>
-		<% 
-		if(list==null|| list.isEmpty()){
+		<%
+		if (list == null || list.isEmpty()) {
 		%>
-			<div class="alert alert-warning text-center">
-		    No skills found for "<%=request.getParameter("key") %>"
+		<div class="alert alert-warning text-center">
+			No skills found for "<%=request.getParameter("key")%>"
 		</div>
-		 <% 
+		<%
 		}
 		%>
 
@@ -201,7 +240,9 @@ body {
 				%>
 
 
-				<a href="requestSkill?sid=<%=skill.getSkill_id() %>&rid=<%=skill.getOwner_user()  %>" class="btn btn-primary btn-sm ms-2 search-btn"> Request Skill </a>
+				<a
+					href="requestSkill?sid=<%=skill.getSkill_id()%>&rid=<%=skill.getOwner_user()%>"
+					class="btn btn-primary btn-sm ms-2 search-btn"> Request Skill </a>
 				<%
 				}
 				%>
@@ -213,6 +254,21 @@ body {
 		%>
 
 	</div>
+<script>
+		function toggleDarkMode() {
 
+			document.body.classList.toggle("dark-mode");
+
+			if (document.body.classList.contains("dark-mode")) {
+				localStorage.setItem("theme", "dark");
+			} else {
+				localStorage.setItem("theme", "light");
+			}
+		}
+
+		if (localStorage.getItem("theme") === "dark") {
+			document.body.classList.add("dark-mode");
+		}
+	</script>
 </body>
 </html>

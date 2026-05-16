@@ -7,6 +7,11 @@ public class Request {
 	private int recieverId;
 	private int skillId;
 	private String status;
+	private String senderName;
+	private String skillName;
+	private String recieverName;
+	
+	
 	public int getReq_id() {
 		return req_id;
 	}
@@ -37,6 +42,24 @@ public class Request {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getSenderName() {
+		return senderName;
+	}
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
+	}
+	public String getSkillName() {
+		return skillName;
+	}
+	public void setSkillName(String skillName) {
+		this.skillName = skillName;
+	}
 	
+	public String getRecieverName() {
+		return recieverName;
+	}
+	public void setRecieverName(String recieverName) {
+		this.recieverName = recieverName;
+	}
 	
 }

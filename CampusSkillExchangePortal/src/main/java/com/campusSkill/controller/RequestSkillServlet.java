@@ -22,15 +22,26 @@ public class RequestSkillServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 		User us = (User) session.getAttribute("user");
 		int senderid = us.getId();
+		
 		RequestDAO reqdao = new RequestDAO(connectionProvider.getConnection());
-		boolean f = reqdao.sendRequest(senderid, rid, sid);
-		if(f) {
-			session.setAttribute("succMsg", "Request has sent");
+		
+		if(reqdao.checkDuplicateRequest(senderid, rid, sid)) {
+			session.setAttribute("checkReq", "Request already sent");
 			res.sendRedirect("viewSkill");
 		}else {
-			session.setAttribute("failedMsg", "Request has failed");
-			res.sendRedirect("viewSkill");
+			boolean f = reqdao.sendRequest(senderid, rid, sid);
+			
+			if(f) {
+				session.setAttribute("succMsg", "Request has sent");
+				res.sendRedirect("viewSkill");
+			}else {
+				session.setAttribute("failedMsg", "Request has failed");
+				res.sendRedirect("viewSkill");
+			}
 		}
+		
+		
+		
 	}
 
 }
