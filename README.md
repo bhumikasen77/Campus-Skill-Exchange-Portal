@@ -13,6 +13,7 @@ A web-based platform that allows students to showcase their skills, discover ski
 * 📩 Send skill learning requests
 * 📬 View received requests
 * ✔ Accept / ❌ Reject requests
+* 💬 Chat between users
 * 🚫 Prevent unauthorized edit/delete actions
 
 ---
@@ -66,7 +67,7 @@ com.campusSkill
 3. Searches for skills added by other users
 4. Sends a request to learn a skill
 5. Receiver can accept or reject the request
-
+6. Users can chat like Can we Meet in Library this morning?
 ---
 
 ## 🗄 Database Tables
@@ -125,7 +126,6 @@ com.campusSkill
 ## 📌 Future Enhancements
 
 * 🔔 Notification system
-* 💬 Chat between users
 * ⭐ Rating & feedback system
 * 📧 Email alerts
 
